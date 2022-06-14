@@ -36,6 +36,9 @@
                 </td>
                 <td><%=recom.getBanda()%>
                 </td>
+                <td>
+                    <button type="button" class="btn btn-success">Mas de la banda</button>
+                </td>
 
 
 

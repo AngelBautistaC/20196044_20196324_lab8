@@ -1,16 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jesus
-  Date: 13/06/2022
-  Time: 20:03
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page import="Beans.Reproduccion" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean type="java.util.ArrayList<Beans.Reproduccion>" scope="request" id="listaRecomendados"/>
+<jsp:useBean type="java.util.ArrayList<Beans.Reproduccion>" scope="request" id="listaCompleta"/>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+
 <jsp:include page="/static/head.jsp">
-    <jsp:param name="title" value="Recomendados :D"/>
+    <jsp:param name="title" value=" :D"/>
 </jsp:include>
 <head>
 
@@ -22,7 +19,7 @@
     </jsp:include>
     <div class="pb-5 pt-4 px-3 titlecolor">
         <div class="col-lg-6">
-            <h1 class='text-light'>Lista de Canciones</h1>
+            <h1 class='text-light'>Lista de canciones</h1>
         </div>
     </div>
     <div class="tabla">
@@ -43,7 +40,12 @@
                 </td>
                 <td><%=canciones.getBanda()%>
                 </td>
+                <td>
 
+                    <button type="button" class="btn btn-success" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        👍
+                    </button>
+                </td>
 
 
             </tr>

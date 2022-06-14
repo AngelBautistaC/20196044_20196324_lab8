@@ -5,12 +5,14 @@ public class Reproduccion {
     private String cancion;
     private String banda;
 
-    public Reproduccion(int idreproduccion, String cancion, String banda) {
+    private int like;
+
+    public Reproduccion(int idreproduccion, String cancion, String banda, int like) {
         this.idreproduccion = idreproduccion;
         this.cancion = cancion;
         this.banda = banda;
+        this.like = like;
     }
-
 
     public int getIdreproduccion() {
         return idreproduccion;
@@ -34,5 +36,13 @@ public class Reproduccion {
 
     public void setBanda(String banda) {
         this.banda = banda;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 }

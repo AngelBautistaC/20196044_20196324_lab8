@@ -106,7 +106,7 @@ public class ReproduccionDao {
         try (Connection connection = DriverManager.getConnection(url, user, pass);
              PreparedStatement pstmt = connection.prepareStatement(sql);) {
 
-            pstmt.setInt(4, Reproduccion.getLike());
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

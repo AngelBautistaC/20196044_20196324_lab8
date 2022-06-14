@@ -32,6 +32,7 @@
             </thead>
             <%
                 for (Reproduccion canciones : listaCompleta) {
+
             %>
             <tr>
                 <td><%=canciones.getIdreproduccion()%>
@@ -42,16 +43,31 @@
                 </td>
                 <td>
 
-                    <button type="button" class="btn btn-success" data-toggle="button" aria-pressed="false" autocomplete="off">
-                        👍
-                    </button>
+                        <% if (canciones.getLike()==0){  %>
+                        <form method="POST" action="<%=request.getContextPath()%>/listaCanciones?a=likear">
+                        <input type="hidden" name="idcancion" value="<%=canciones.getIdreproduccion()%>" />
+                        <input type="hidden" name="cancion" value="<%=canciones.getCancion()%>" />
+                        <input type="hidden" name="banda" value="<%=canciones.getBanda()%>" />
+                        <input type="hidden" class="form-control" name="like" id="like" value="<%=canciones.getLike()%>">
+                        <button type="submit" class="btn btn-success"> Me gusta 👍</button>
+                        </form>
+                        <% } %>
+                        <% if (canciones.getLike()==1){  %>
+                        <form method="POST" action="<%=request.getContextPath()%>/listaCanciones?a=dislike">
+                            <input type="hidden" name="idcancion1" value="<%=canciones.getIdreproduccion()%>" />
+                            <input type="hidden" name="cancion1" value="<%=canciones.getCancion()%>" />
+                            <input type="hidden" name="banda1" value="<%=canciones.getBanda()%>" />
+                        <input type="hidden" class="form-control" name="like1" id="like1" value="<%=canciones.getLike()%>">
+                        <button type="submit" class="btn btn-danger">Ya no me gusta</button>
+                        </form>
+                        <% } %>
+
+
+
                 </td>
 
-
             </tr>
-            <%
-                }
-            %>
+            <% } %>
         </table>
     </div>
 </div>

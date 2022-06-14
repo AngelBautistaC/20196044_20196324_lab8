@@ -14,6 +14,9 @@ public class Reproduccion {
         this.like = like;
     }
 
+    public Reproduccion() {
+    }
+
     public int getIdreproduccion() {
         return idreproduccion;
     }

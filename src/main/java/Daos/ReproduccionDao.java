@@ -50,15 +50,16 @@ public class ReproduccionDao {
         ArrayList<Reproduccion> listaCompleta = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(url, user, pass);
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT idcancion,nombre_cancion,banda from cancion\n" +
+             ResultSet rs = stmt.executeQuery("select idcancion,nombre_cancion,banda,me_gusta from cancion\n" +
                      "order by idcancion;")) {
 
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String cancion = rs.getString(2);
                 String banda = rs.getString(3);
+                int me_gusta=rs.getInt(4);
 
-                listaCompleta.add(new Reproduccion(id,cancion,banda,0));
+                listaCompleta.add(new Reproduccion(id,cancion,banda,me_gusta));
             }
 
         } catch (SQLException e) {
@@ -83,7 +84,7 @@ public class ReproduccionDao {
                 String cancion = rs.getString(2);
                 String banda = rs.getString(3);
 
-                listaCompletaPorBanda.add(new Reproduccion(id,cancion,banda));
+                listaCompletaPorBanda.add(new Reproduccion(id,cancion,banda,0));
             }
 
         } catch (SQLException e) {
@@ -93,7 +94,11 @@ public class ReproduccionDao {
     }
 
     //ESTA PARTE PARA LOS LIKES EN LA BANDA, SE AÑADIO UNA COLUMNA DE LIKES EN LA BASE D EDATOS/MUSICA :
-    public void actualizar(Reproduccion musica) {
+    public void likear(Reproduccion musicid) {
+
+        String user = "root";
+        String pass = "root";
+        String url = "jdbc:mysql://localhost:3306/lab6sw1?serverTimezone=America/Lima";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -101,12 +106,42 @@ public class ReproduccionDao {
             throw new RuntimeException(e);
         }
 
-        String sql = "UPDATE musica SET me_gusta=? where idcancion=?";
+        String sql = "UPDATE cancion set me_gusta=1 \n" +
+                "where idcancion=?;";
 
         try (Connection connection = DriverManager.getConnection(url, user, pass);
              PreparedStatement pstmt = connection.prepareStatement(sql);) {
 
+            //System.out.println(musicid.getIdreproduccion());
+            pstmt.setInt(1, musicid.getIdreproduccion());
+            pstmt.executeUpdate();
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public void dislikear(Reproduccion musicid) {
+
+        String user = "root";
+        String pass = "root";
+        String url = "jdbc:mysql://localhost:3306/lab6sw1?serverTimezone=America/Lima";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String sql = "UPDATE cancion set me_gusta=0 \n" +
+                "where idcancion=?;";
+
+        try (Connection connection = DriverManager.getConnection(url, user, pass);
+             PreparedStatement pstmt = connection.prepareStatement(sql);) {
+
+            //System.out.println(musicid.getIdreproduccion());
+            pstmt.setInt(1, musicid.getIdreproduccion());
+            pstmt.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

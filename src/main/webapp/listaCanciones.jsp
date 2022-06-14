@@ -7,10 +7,10 @@
 --%>
 <%@ page import="Beans.Reproduccion" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean type="java.util.ArrayList<Beans.Reproduccion>" scope="request" id="listaRecomendados"/>
+<jsp:useBean type="java.util.ArrayList<Beans.Reproduccion>" scope="request" id="listaCompleta"/>
 <html>
 <jsp:include page="/static/head.jsp">
-    <jsp:param name="title" value="Recomendados :D"/>
+    <jsp:param name="title" value=" :D"/>
 </jsp:include>
 <head>
 
@@ -22,7 +22,7 @@
     </jsp:include>
     <div class="pb-5 pt-4 px-3 titlecolor">
         <div class="col-lg-6">
-            <h1 class='text-light'>Lista de Canciones</h1>
+            <h1 class='text-light'>Lista de canciones</h1>
         </div>
     </div>
     <div class="tabla">

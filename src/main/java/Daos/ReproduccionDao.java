@@ -76,19 +76,20 @@ public class ReproduccionDao {
         ArrayList<Reproduccion> listaCompletaPorBanda = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(url, user, pass);
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT idcancion,nombre_cancion,banda from cancion\n" +
-                     "where banda = 'FOB' order by idcancion;")) {
+             ResultSet rs = stmt.executeQuery("select idcancion,nombre_cancion,banda,me_gusta from cancion\n" +
+                     "where banda =\"FOB\" order by idcancion;")) {
 
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String cancion = rs.getString(2);
                 String banda = rs.getString(3);
+                int like = Integer.parseInt(rs.getString(4));
 
-                listaCompletaPorBanda.add(new Reproduccion(id,cancion,banda,0));
+                listaCompletaPorBanda.add(new Reproduccion(id,cancion,banda,like));
             }
 
         } catch (SQLException e) {
-            System.out.println("Error de conexión SQL");
+            System.out.println("Erro ción SQL");
         }
         return listaCompletaPorBanda;
     }

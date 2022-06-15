@@ -26,10 +26,8 @@
 
     </div>
     <div class='container'>
-      <a class="btn btn-warning" href="… ">Mostrar todas las canciones</a>
-      <form action="<%=request.getContextPath()%>/listaCanciones">
-      </form>
-
+      <a class="btn btn-warning" style="float: right;" href="<%=request.getContextPath()%>/listaCanciones">Mostrar todas las canciones</a>
+      <br>
     </div>
   </div>
   <div class="tabla">
@@ -59,6 +57,8 @@
     </table>
   </div>
 </div>
+<br>
+<br>
 <jsp:include page="/static/scripts.jsp"/>
 </body>
 </html>
